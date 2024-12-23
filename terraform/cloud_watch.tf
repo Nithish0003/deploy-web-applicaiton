@@ -13,7 +13,7 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu_alarm" {
   dimensions = {
     InstanceId = aws_instance.instance[each.value.instance_id].id
   }
-  alarm_actions = [ aws_sns_topic.topic[each.value.topic].arn ]
+  alarm_actions = [aws_sns_topic.topic[each.value.topic].arn]
 }
 # CloudWatch Alarms for High Memory Usage
 resource "aws_cloudwatch_metric_alarm" "high_memory_alarm" {
@@ -30,8 +30,20 @@ resource "aws_cloudwatch_metric_alarm" "high_memory_alarm" {
   dimensions = {
     InstanceId = aws_instance.instance[each.value.instance_id].id
   }
-  alarm_actions = [ aws_sns_topic.topic[each.value.topic].arn ]
+  alarm_actions = [aws_sns_topic.topic[each.value.topic].arn]
 }
+# CloudWatch Logs for EC2 Instances
+resource "aws_cloudwatch_log_group" "ec2_log_group" {
+  name              = "/aws/ec2/instance"
+  retention_in_days = 7
+}
+
+resource "aws_cloudwatch_log_stream" "ec2_log_stream" {
+  count = length(aws_instance.instance)
+  name = "instance-${count.index}"
+  log_group_name = aws_cloudwatch_log_group.ec2_log_group.name
+}
+
 # CloudWatch Alarms for Load Balancer
 resource "aws_cloudwatch_metric_alarm" "high_latency_alarm" {
   alarm_name          = "high-latency-alarm"
@@ -46,16 +58,16 @@ resource "aws_cloudwatch_metric_alarm" "high_latency_alarm" {
   dimensions = {
     LoadBalancerName = aws_lb.elb_1.name
   }
-  count = 2
-  alarm_actions = [ aws_sns_topic.topic[count.index+4].arn ]
+  count         = 2
+  alarm_actions = [aws_sns_topic.topic[count.index + 4].arn]
 }
 
 resource "aws_sns_topic" "topic" {
   count = 6
-  name     = "topic-${count.index+1}"
+  name  = "topic-${count.index + 1}"
 }
 resource "aws_sns_topic_subscription" "notify" {
-  count = 6
+  count     = 6
   topic_arn = aws_sns_topic.topic[count.index].arn
   protocol  = "email"
   endpoint  = var.notification_email

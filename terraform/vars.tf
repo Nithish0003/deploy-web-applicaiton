@@ -8,6 +8,7 @@ variable "vpc1_subnet" {
 variable "public_key_path" {
   type        = string
   description = "Path to the public key file"
+  sensitive = true
 }
 variable "instance" {
   type = list(object({
@@ -35,9 +36,29 @@ variable "memory_alarm" {
 }
 variable "notification_email" {
   type        = string
-  description = "Email address for notifications"
+  description = "your-email@example.com"
 }
 variable "db_pass" {
   type        = string
-  description = "your-secure-password"
+  description = "your_db_password"
+  sensitive = true
+}
+variable "access_key_id" {
+  type = string
+  description = "your_access_key_id"
+  sensitive = true
+}
+variable "secret_key__id" {
+  type = string
+  description = "your_secret_access_key"
+  sensitive = true
+}
+variable "github_repo" {
+  type        = string
+  description = "your_github_repo"
+}
+variable "github_token" {
+  type        = string
+  description = "your_github_token"
+  sensitive = true  
 }
