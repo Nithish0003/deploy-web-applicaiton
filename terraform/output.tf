@@ -3,7 +3,7 @@ output "vpc_id" {
 }
 
 output "subnet_ids" {
-  value = aws_subnet.subnet[*].id
+  value = [aws_subnet.subnet["subnet-1"].id, aws_subnet.subnet["subnet-2"].id]
 }
 
 output "db_instance_endpoint" {
