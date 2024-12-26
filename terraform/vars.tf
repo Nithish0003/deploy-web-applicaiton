@@ -53,12 +53,12 @@ variable "secret_key_id" {
   description = "your_secret_access_key"
   sensitive = true
 }
-variable "github_repo" {
-  type        = string
-  description = "your_github_repo"
-}
-variable "github_token" {
-  type        = string
-  description = "your_github_token"
-  sensitive = true  
-}
+# variable "github_repo" {
+#   type        = string
+#   description = "your_github_repo"
+# }
+# variable "github_token" {
+#   type        = string
+#   description = "your_github_token"
+#   sensitive = true  
+# }
