@@ -58,7 +58,7 @@ variable "vpc1_subnet" {
 
 `public_key_path`
 
-This variable defines the path to the public key file used for SSH access to instances.
+This variable defines the path to the public key file used for SSH access to instances:
 
 ```Hcl
 variable "public_key_path" {
@@ -93,7 +93,7 @@ variable "instance" {
 
 `lb_target`
 
-This variable defines the list of instances that are targets for the load balancer.
+This variable defines the list of instances that are targets for the load balancer:
 
 ```Hcl
 variable "lb_target" {
@@ -105,6 +105,14 @@ variable "lb_target" {
     { "instance" = "instance-2" }
   ]
 }
+```
+
+The variables to be defined on terraform.tfvars file:
+
+``` vars
+public_key_path = path to your public key file
+notification_email = email you want to get notified
+db_pass            = database password
 ```
 
 ## Credentials
