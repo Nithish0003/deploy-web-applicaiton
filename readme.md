@@ -174,6 +174,13 @@ resource "aws_iam_role_policy_attachment" "rds_policy" {
 }
 ```
 
+## Testing terraform code
+
+``` sh
+cd test
+go test -v
+```
+
 ## Usage
 
 Instructions on how to use your Terraform code:
