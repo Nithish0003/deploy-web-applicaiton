@@ -124,15 +124,6 @@ export AWS_ACCESS_KEY_ID="your-access-key-id"
 export AWS_SECRET_ACCESS_KEY="your-secret-access-key"
 ```
 
-## Store the db-password in AWS Secrets Manager
-
-- Go to the AWS Management Console.
-- Navigate to Secrets Manager.
-- Click on Store a new secret.
-- Choose Other type of secret and enter your database password.
-- Click Next and follow the prompts to give your secret a name and configure other settings.
-- Finally, click Store to save your secret.
-
 ## IAM Policies Used
 
 ### IAM Role for EC2
